@@ -65,11 +65,25 @@ void fill_adjacency_matrix(){
     }
 }
 
-void dfs(int departure, int destination){
-    int used[100][100];
-    for(int i = 0; i < NUMBER_OF_VERTICES; i++){
+void search(int departure, int destination){
 
+    int visited[NUMBER_OF_VERTICES];
+    for(int i = 0; i < NUMBER_OF_VERTICES; i++){
+        visited[i] = 0;
     }
+
+    void DFS(int i)
+    {
+        int j;
+        printf("\n%d",i);
+        visited[i]=1;
+
+        for(j = 0; j < NUMBER_OF_VERTICES; j++)
+            if(!visited[j] && adjacency_matrix[i][j] == 1)
+                DFS(j);
+    }
+
+    DFS(1);
 }
 
 
@@ -123,6 +137,8 @@ int main() {
 
     fill_adjacency_matrix();
     print_adjacency_matrix();
+
+    search(0, 0);
     getchar();
     return 0;
 }
